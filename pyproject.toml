@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "api-consumer"
+version = "0.1.0"
+description = "Class-based helper for constructing API clients"
+authors = ["EnriqueSoria <me@enriquesoria.es>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+structlog = "^21.1.0"
+requests = "^2.25.1"
+requests-toolbelt = "^0.9.1"
+dacite = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
