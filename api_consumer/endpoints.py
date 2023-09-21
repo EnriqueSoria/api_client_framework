@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
 from dataclasses import is_dataclass, asdict
 
 from typing import Optional, Any, Mapping, Dict, Union, cast
@@ -5,16 +8,49 @@ from typing import Optional, Any, Mapping, Dict, Union, cast
 import requests
 from dacite import from_dict
 
-from api_consumer.methods import Methods
+from api_consumer import protocols
+from api_consumer.httpverb import HttpVerb
 
 
-class Endpoint:
-    method: str = Methods.GET
+class URLBuilder:
+    def build(self, endpoint: Endpoint) -> str:  # TODO: Add more parameters
+        return endpoint.url
+
+    def get_query_params(self) -> Mapping:
+        ...
+
+
+class ResponseParser:
+    """Parses response (convert to pydantic/dataclass...)"""
+
+    def parse(self, response):
+        ...
+
+
+class Paginator:
+    """Handles pagination"""
+
+    def has_next_page(self) -> bool:
+        ...
+
+    def get_next_page(self, response) -> Page:
+        ...
+
+    def get_list(self, response) -> list:
+        ...
+
+
+class Endpoint(protocols.Endpoint):
+    method: str = HttpVerb.GET
     url: str
     json: bool = True  # Whether to send body as file-like or json
     default_headers: Optional[dict] = {}
 
     result: Optional[Any]  # Dataclass to store the result
+
+    # Dependencies
+    url_builder = URLBuilder
+    paginator = Paginator
 
     def __init__(
         self,
@@ -26,7 +62,6 @@ class Endpoint:
         self.data = self.force_dict(data)
         self.params = self.force_dict(params)
         self.headers = {**self.default_headers, **self.force_dict(headers)}
-        self.url = self.build_url()
 
     def __str__(self):
         return f"{self.method} {self.url}"
@@ -34,8 +69,25 @@ class Endpoint:
     def __repr__(self):
         return f"{self.__class__.__name__}(method={self.method}, url={self.url}, params={self.params}, data={self.data})"
 
+    def __iter__(self):
+        response = self.call()
+        paginator = self.get_paginator()
+
+        # TODO: Check if is list
+        yield from paginator.get_list(response)
+
+        while paginator.has_next_page(response):
+            response = paginator.get_next_page()
+            yield from paginator.get_list(response)
+
+    def get_paginator(self):
+        return self.paginator()
+
+    def get_url_builder(self):
+        return self.url_builder()
+
     def build_url(self) -> str:
-        return self.url
+        return URLBuilder().build(self)
 
     @staticmethod
     def force_dict(data) -> dict:

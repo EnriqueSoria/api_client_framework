@@ -1,5 +1,6 @@
 import json
 from json import JSONDecodeError
+from typing import Any
 from typing import Optional
 
 import requests
@@ -10,6 +11,52 @@ from api_consumer.endpoints import Endpoint
 from api_consumer.requests_utils import parse_response
 
 logger = structlog.get_logger(__name__)
+
+
+class ExceptionConverter:
+    def __call__(self, exception, endpoint, response):  # TODO: Rethink API
+        return exception
+
+
+class LogHandler:
+    def exception(self, endpoint, response, exception):
+        self.log_exception(
+            endpoint=endpoint,
+            response=response,
+            exception=exception,
+        )
+
+
+class ExceptionHandler:
+    raise_exceptions: bool
+    exception_converter: Any
+
+    def __call__(self, endpoint, response, exception):
+        # Convert exception in custom exception
+        original_exception = exception
+
+        exception_converter = self.exception_converter()
+        exception = exception_converter(exception)
+
+        # Log only non-converted exceptions
+        if exception is original_exception:
+            self.log_exception(
+                endpoint=endpoint,
+                response=response,
+                exception=exception,
+            )
+
+        # Raise exceptions if desired
+        if self.raise_exceptions:
+            raise exception
+
+
+class ResponseParser:
+    """Parse responses (i.e.: convert to dataclasses or pydantic models)"""
+
+
+class ResponseHandler:
+    ...
 
 
 class ResponseHandlingMixin:
