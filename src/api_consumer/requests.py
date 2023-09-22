@@ -34,7 +34,7 @@ class RequestsEndpoint(EndpointProtocol):
     def get_request(self):
         return requests.Request(
             method=self.method,
-            url=self.url,
+            url=self.get_url(),
             params=self.parser.to_dict(self.params),
             headers=self.parser.to_dict(self.get_headers()),
             data=self.parser.to_dict(self.data),
