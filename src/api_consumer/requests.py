@@ -7,7 +7,7 @@ import requests
 from api_consumer.methods import Methods
 from api_consumer.parsers import NoOpParser
 from api_consumer.protocols import Parser
-from src.api_consumer.protocols import EndpointProtocol
+from api_consumer.protocols import EndpointProtocol
 
 
 class ExceptionReRaiser:

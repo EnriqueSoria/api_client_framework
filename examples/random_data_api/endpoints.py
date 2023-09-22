@@ -1,8 +1,8 @@
 from examples.random_data_api.models import Beer
 from examples.random_data_api.models import User
-from src.api_consumer.methods import Methods
-from src.api_consumer.parsers import NamedTupleParser
-from src.api_consumer.requests import RequestsEndpoint
+from api_consumer.methods import Methods
+from api_consumer.parsers import NamedTupleParser
+from api_consumer.requests import RequestsEndpoint
 
 
 class UsersEndpoint(RequestsEndpoint):

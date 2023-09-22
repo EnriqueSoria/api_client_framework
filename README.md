@@ -25,7 +25,7 @@ import requests
 
 from examples.random_data_api.endpoints import UsersEndpoint
 from examples.random_data_api.models import User
-from src.api_consumer.requests import RequestsClient
+from api_consumer.requests import RequestsClient
 
 
 class RandomDataAPI(RequestsClient):
