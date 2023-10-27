@@ -37,7 +37,7 @@ class RequestsEndpoint(EndpointProtocol):
             url=self.get_url(),
             params=self.parser.to_dict(self.params),
             headers=self.parser.to_dict(self.get_headers()),
-            data=self.parser.to_dict(self.data),
+            json=self.parser.to_dict(self.data),
         )
 
     def handle_exception(self, exception: Exception):

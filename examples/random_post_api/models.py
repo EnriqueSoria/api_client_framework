@@ -17,13 +17,3 @@ CreateObjectRequest = namedtuple(
         "data",
     ]
 )
-
-# ObjectData = namedtuple(
-#     "Data",
-#     [
-#         "year",
-#         "price",
-#         "CPU model",
-#         "Hard disk size"
-#     ]
-# )
