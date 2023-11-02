@@ -63,7 +63,7 @@ session.hooks["response"].append(print_response)
 
 
 ## Examples
-There's a small example in this repo, under [`examples/random_data_api`](https://github.com/EnriqueSoria/python-api-consumer/tree/master/examples/random_data_api), which implements some endpoints of [random-data-api.com](https://random-data-api.com/)
+There's a small example in this repo, under [`examples/random_data_api`](https://github.com/EnriqueSoria/api_client_framework/tree/master/examples/random_data_api), which implements some endpoints of [random-data-api.com](https://random-data-api.com/)
 
-### Made with `python-api-consumer`
+### Made with `api_client_framework`
  - [PyWegowAPI](https://github.com/EnriqueSoria/PyWegowAPI) -  A client for the public, undocumented, Wegow API 

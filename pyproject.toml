@@ -5,7 +5,7 @@ description = "Class-based helper for constructing API clients"
 authors = ["EnriqueSoria <me@enriquesoria.es>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/EnriqueSoria/python-api-consumer"
+repository = "https://github.com/EnriqueSoria/api_client_framework"
 
 [tool.poetry.dependencies]
 python = "^3.7"
