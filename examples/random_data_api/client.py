@@ -4,7 +4,7 @@ from examples.random_data_api.endpoints import BeersEndpoint
 from examples.random_data_api.endpoints import UsersEndpoint
 from examples.random_data_api.models import Beer
 from examples.random_data_api.models import User
-from api_consumer.requests import RequestsClient
+from api_client_framework.requests import RequestsClient
 
 
 class RandomDataAPI(RequestsClient):

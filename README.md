@@ -5,9 +5,9 @@ Create clients for consuming endpoints in a class-based way.
 
 ## Describe the endpoints using a class
 ```python
-from api_consumer.requests import RequestsEndpoint
-from api_consumer.requests import Methods
-from api_consumer.parsers import NamedTupleParser
+from api_client_framework.requests import RequestsEndpoint
+from api_client_framework.requests import Methods
+from api_client_framework.parsers import NamedTupleParser
 from collections import namedtuple
 
 User = namedtuple("User", ["id", "uid", "password","first_name", ...], rename=True)
@@ -25,7 +25,7 @@ import requests
 
 from examples.random_data_api.endpoints import UsersEndpoint
 from examples.random_data_api.models import User
-from api_consumer.requests import RequestsClient
+from api_client_framework.requests import RequestsClient
 
 
 class RandomDataAPI(RequestsClient):

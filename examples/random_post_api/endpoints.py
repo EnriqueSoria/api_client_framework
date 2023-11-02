@@ -1,8 +1,9 @@
-from api_consumer.methods import Methods
-from api_consumer.parsers import NamedTupleParser
-from api_consumer.requests import RequestsEndpoint
+from api_client_framework.methods import Methods
+from api_client_framework.parsers import NamedTupleParser
+from api_client_framework.requests import RequestsEndpoint
 
 from examples.random_post_api.models import CreateObjectRequest
+
 
 class CreateObjectEndpoint(RequestsEndpoint):
     method = Methods.POST

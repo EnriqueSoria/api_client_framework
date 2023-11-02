@@ -4,10 +4,10 @@ from typing import Callable
 
 import requests
 
-from api_consumer.methods import Methods
-from api_consumer.parsers import NoOpParser
-from api_consumer.protocols import Parser
-from api_consumer.protocols import EndpointProtocol
+from api_client_framework.methods import Methods
+from api_client_framework.parsers import NoOpParser
+from api_client_framework.protocols import Parser
+from api_client_framework.protocols import EndpointProtocol
 
 
 class ExceptionReRaiser:

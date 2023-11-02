@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "api_consumer"
+name = "api_client_framework"
 version = "0.1.0"
 description = "Class-based helper for constructing API clients"
 authors = ["EnriqueSoria <me@enriquesoria.es>"]

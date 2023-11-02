@@ -2,7 +2,7 @@ from typing import Any
 from typing import NamedTuple
 from typing import Type
 
-from api_consumer.protocols import Parser
+from api_client_framework.protocols import Parser
 
 
 class NoOpParser(Parser):

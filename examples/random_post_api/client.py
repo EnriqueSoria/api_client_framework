@@ -1,6 +1,6 @@
 import requests
 
-from api_consumer.requests import RequestsClient
+from api_client_framework.requests import RequestsClient
 
 from examples.random_post_api.endpoints import CreateObjectEndpoint
 from examples.random_post_api.models import CreateObjectRequest
