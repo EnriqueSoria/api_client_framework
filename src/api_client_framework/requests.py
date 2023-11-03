@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from json import JSONDecodeError
 from typing import Any
 from typing import Callable
@@ -6,8 +8,8 @@ import requests
 
 from api_client_framework.methods import Methods
 from api_client_framework.parsers import NoOpParser
-from api_client_framework.protocols import Parser
 from api_client_framework.protocols import EndpointProtocol
+from api_client_framework.protocols import Parser
 
 
 class ExceptionReRaiser:
