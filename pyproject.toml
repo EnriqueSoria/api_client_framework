@@ -11,7 +11,40 @@ repository = "https://github.com/EnriqueSoria/api_client_framework"
 python = "^3.7"
 requests = "^2.31"
 
-[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.3"
+
+[tool.ruff]
+target-version = "py37"
+line-length = 100
+src = ["app", "tests"]
+select = [
+    "E", # pycodestyle
+    "F", # Pyflakes
+    "TID251", # https://docs.astral.sh/ruff/rules/banned-api/
+    "TID252", # https://docs.astral.sh/ruff/rules/relative-imports/
+    "FA102", # https://docs.astral.sh/ruff/rules/future-required-type-annotation/
+    "DJ008", # https://docs.astral.sh/ruff/rules/django-model-without-dunder-str/
+    "B006", # https://docs.astral.sh/ruff/rules/mutable-argument-default/
+    "B009", # https://docs.astral.sh/ruff/rules/get-attr-with-constant/
+    "B010", # https://docs.astral.sh/ruff/rules/set-attr-with-constant/
+    "B904", # https://docs.astral.sh/ruff/rules/raise-without-from-inside-except/
+    "C4", # https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4
+    "T100", # https://docs.astral.sh/ruff/rules/debugger/
+    "INT001", # https://docs.astral.sh/ruff/rules/f-string-in-get-text-func-call/
+    "PGH001", # https://docs.astral.sh/ruff/rules/eval/
+    "PLE0302", # https://docs.astral.sh/ruff/rules/unexpected-special-method-signature/
+    "PLE0307", # https://docs.astral.sh/ruff/rules/invalid-str-return-type/
+    "PLW0120", # https://docs.astral.sh/ruff/rules/useless-else-on-loop/
+
+]
+unfixable = [
+    "F841", # Disable autofix for unused variables (`F841`)
+    "I", # Disable autofix for imports (`I`)
+    "TID252", # Disable fix of imports because it doesn't do it properly
+]
+
 
 
 [build-system]
