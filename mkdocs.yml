@@ -35,7 +35,7 @@ markdown_extensions:
 
 
 nav:
-  - Home: 'index.md'
+  - Introduction: 'introduction.md'
   - Geting started:
       - 'getting-started/describe-endpoints.md'
       - 'getting-started/create-client.md'

@@ -4,8 +4,8 @@ and providing a nice python interface for anyone that wants to use the API.
 ```python
 import requests
 
-from examples.random_data_api.endpoints import UsersEndpoint
-from examples.random_data_api.models import User
+from examples.random_data_api.endpoints import BeersEndpoint
+from examples.random_data_api.models import Beer
 from api_client_framework.requests import RequestsClient
 
 
@@ -15,7 +15,7 @@ class RandomDataAPI(RequestsClient):
     def __init__(self):
         self.session = requests.Session()
 
-    def get_user(self) -> User:
-        """Retrieve a single random user"""
-        return self._perform_request(UsersEndpoint())
+    def get_beer(self) -> Beer:
+        """Retrieve a single random beer"""
+        return self._perform_request(BeersEndpoint())
 ```

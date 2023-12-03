@@ -1,4 +1,19 @@
+# API Client Framework
+
 Create clients for consuming endpoints in a class-based way.
+
+ - Describe endpoints as classes
+ - Let your users send and receive data using python classes, not dicts.
+ - Embrace good practices
+
+```pycon
+>>> from examples.random_data_api.client import RandomDataAPI
+>>> client = RandomDataAPI()
+>>> beer = client.get_beer()
+>>> print(f"{beer.name} ({beer.style})")
+Samuel Smith’s Oatmeal Stout (Wood-aged Beer)
+```
+
 
 ## Installation
 ```shell
