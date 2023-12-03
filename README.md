@@ -2,6 +2,11 @@
 
 Create clients for consuming endpoints in a class-based way.
 
+## Installation
+```shell
+pip install api-client-framework
+```
+
 
 ## Describe the endpoints using a class
 ```python
