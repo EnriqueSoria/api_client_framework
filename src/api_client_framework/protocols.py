@@ -6,7 +6,7 @@ class EndpointProtocol(Protocol):
     def get_request(self) -> Any:
         ...
 
-    def handle_exception(self, exception: Exception) -> Any:
+    def handle_exception(self, exception: Exception, response: Any) -> Any:
         ...
 
     def parse_response(self, response: Any) -> Any:
@@ -21,4 +21,9 @@ class Parser(Protocol):
         ...
 
     def to_class(self, dictionary: dict) -> Any:
+        ...
+
+
+class ExceptionHandler(Protocol):
+    def handle_exception(self, exception: Exception, response: Any) -> Any:
         ...

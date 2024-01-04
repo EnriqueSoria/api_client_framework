@@ -9,11 +9,12 @@ import requests
 from api_client_framework.methods import Methods
 from api_client_framework.parsers import NoOpParser
 from api_client_framework.protocols import EndpointProtocol
+from api_client_framework.protocols import ExceptionHandler
 from api_client_framework.protocols import Parser
 
 
-class ExceptionReRaiser:
-    def __call__(self, exception: Exception):
+class ExceptionReRaiser(ExceptionHandler):
+    def __call__(self, exception: Exception, response: requests.Response):
         raise exception
 
 
@@ -42,8 +43,8 @@ class RequestsEndpoint(EndpointProtocol):
             json=self.parser.to_dict(self.data),
         )
 
-    def handle_exception(self, exception: Exception):
-        raise exception
+    def handle_exception(self, exception: Exception, response: requests.Response):
+        return self.exception_handler(exception, response)
 
     def parse_response(self, response: requests.Response) -> Any:
         try:
@@ -57,7 +58,7 @@ class RequestsEndpoint(EndpointProtocol):
         try:
             response.raise_for_status()
         except requests.RequestException as exception:
-            return self.exception_handler(exception)
+            return self.exception_handler(exception, response)
 
         return self.parse_response(response)
 
