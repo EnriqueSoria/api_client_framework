@@ -43,4 +43,8 @@ nav:
   - Geting started:
       - 'getting-started/describe-endpoints.md'
       - 'getting-started/create-client.md'
-  - Advanced: 'advanced/index.md'
+  - Advanced:
+      - 'advanced/data-parsers.md'
+      - 'advanced/exception-handlers.md'
+      - 'advanced/base-url.md'
+      - 'advanced/logging.md'

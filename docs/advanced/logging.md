@@ -1,11 +1,4 @@
-### Create your own data parsers
-...using `Parser` protocol.
 
-### Convert HTTP exceptions in your custom exceptions
-...by creating your own `exception_handler`
-
-### Define a base URL for all your endpoints only once
-...using `BaseUrlSession` from [requests_toolbelt](https://toolbelt.readthedocs.io/) package
 
 ### Log responses
 ...by adding [a hook](https://requests.readthedocs.io/en/latest/user/advanced.html#event-hooks) in your `requests.Session` instance
