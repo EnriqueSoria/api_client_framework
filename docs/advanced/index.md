@@ -8,7 +8,7 @@
 ...using `BaseUrlSession` from [requests_toolbelt](https://toolbelt.readthedocs.io/) package
 
 ### Log responses
-...by adding [a hook](https://requests.readthedocs.io/en/latest/user/advanced/#event-hooks) in your `requests.Session` instance
+...by adding [a hook](https://requests.readthedocs.io/en/latest/user/advanced.html#event-hooks) in your `requests.Session` instance
 
 ```python
 import requests
