@@ -3,7 +3,7 @@ import requests
 from api_client_framework.requests import RequestsClient
 
 from examples.random_post_api.endpoints import CreateObjectEndpoint
-from examples.random_post_api.models import CreateObjectRequest
+from examples.random_post_api.models import CreateObjectRequest, CreateObjectResponse
 
 
 class ObjectsAPI(RequestsClient):
@@ -12,5 +12,5 @@ class ObjectsAPI(RequestsClient):
     def __init__(self):
         self.session = requests.Session()
 
-    def create_object(self, data: CreateObjectRequest):
+    def create_object(self, data: CreateObjectRequest) -> CreateObjectResponse:
         return self._perform_request(CreateObjectEndpoint(data))

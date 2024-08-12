@@ -17,6 +17,9 @@ class EndpointProtocol(Protocol):
 
 
 class Parser(Protocol):
+    def __init__(self, model, **kwargs) -> None:
+        ...
+
     def to_dict(self, instance: Any) -> dict:
         ...
 

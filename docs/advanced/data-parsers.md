@@ -11,15 +11,12 @@ from typing import Type, NamedTuple, Any
 
 
 class NamedTupleParser(Parser):
-    def __init__(self, named_tuple_class: Type[NamedTuple]):
-        self.named_tuple_class = named_tuple_class
+    def __init__(self, model: Type[NamedTuple], **kwargs):
+        self.model = model
 
     def to_dict(self, instance: NamedTuple) -> dict:
-        try:
-            return instance._asdict()
-        except AttributeError:
-            return instance
+        return instance._asdict()
 
-    def to_class(self, dictionary: dict) -> Any:
-        return self.named_tuple_class(**dictionary)
+    def to_class(self, dictionary: dict) -> NamedTuple:
+        return self.model(**dictionary)
 ```

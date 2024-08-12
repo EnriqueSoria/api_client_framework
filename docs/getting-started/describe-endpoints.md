@@ -35,5 +35,6 @@ class BeersEndpoint(RequestsEndpoint):
     method = Methods.GET
     url = "https://random-data-api.com/api/v2/beers"
     params = {"response_type": "json"}
-    parser = NamedTupleParser(Beer)
+    parser_class = NamedTupleParser
+    models = {"response": Beer}
 ```
