@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from dataclasses import field
 from json import JSONDecodeError
 from typing import Any
 from typing import Callable
+from typing import Type
 
 import requests
 
@@ -25,34 +27,49 @@ class RequestsEndpoint(EndpointProtocol):
     data: Any = None
     default_headers: dict | None = None
 
-    parser: Parser = NoOpParser()
+    parser_class: Type[Parser] = NoOpParser
+    models: dict[str, Type[Any]] = field(default_factory=dict)
     exception_handler: Callable[[Exception], Any] = ExceptionReRaiser()
+
+    def get_parser(self, model_name: str) -> Parser:
+        try:
+            model = self.models[model_name]
+        except KeyError:
+            return NoOpParser(...)
+
+        return self.parser_class(model)
 
     def get_url(self) -> str:
         return self.url
 
-    def get_headers(self) -> dict | None:
-        return self.default_headers
+    def get_headers(self):
+        return self.get_parser("headers").to_dict(self.default_headers)
+
+    def get_params(self):
+        return self.get_parser("params").to_dict(self.params)
+
+    def get_data(self):
+        return self.get_parser("request").to_dict(self.data)
 
     def get_request(self):
         return requests.Request(
             method=self.method,
             url=self.get_url(),
-            params=self.parser.to_dict(self.params),
-            headers=self.parser.to_dict(self.get_headers()),
-            json=self.parser.to_dict(self.data),
+            params=self.get_params(),
+            headers=self.get_headers(),
+            json=self.get_data(),
         )
 
     def handle_exception(self, exception: Exception, response: requests.Response):
         return self.exception_handler(exception, response)
 
-    def parse_response(self, response: requests.Response) -> Any:
+    def parse_response(self, response: requests.Response):
         try:
             data = response.json()
         except JSONDecodeError:
             return response.text
 
-        return self.parser.to_class(data)
+        return self.get_parser("response").to_class(data)
 
     def handle_response(self, response: requests.Response):
         try:
