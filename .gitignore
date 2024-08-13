@@ -3,3 +3,5 @@
 
 # PyCharm
 .idea
+/.cache/
+/.python-version
