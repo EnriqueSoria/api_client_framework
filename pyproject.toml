@@ -13,12 +13,14 @@ requests = "^2.31"
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.1.3"
+ruff = "==0.3.4"
 
 [tool.ruff]
 target-version = "py37"
 line-length = 100
 src = ["app", "tests"]
+
+[tool.ruff.lint]
 select = [
     "E", # pycodestyle
     "F", # Pyflakes
@@ -33,7 +35,7 @@ select = [
     "C4", # https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4
     "T100", # https://docs.astral.sh/ruff/rules/debugger/
     "INT001", # https://docs.astral.sh/ruff/rules/f-string-in-get-text-func-call/
-    "PGH001", # https://docs.astral.sh/ruff/rules/eval/
+    "S307", # https://docs.astral.sh/ruff/rules/eval/
     "PLE0302", # https://docs.astral.sh/ruff/rules/unexpected-special-method-signature/
     "PLE0307", # https://docs.astral.sh/ruff/rules/invalid-str-return-type/
     "PLW0120", # https://docs.astral.sh/ruff/rules/useless-else-on-loop/
