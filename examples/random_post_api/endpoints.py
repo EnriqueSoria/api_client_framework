@@ -9,10 +9,9 @@ class CreateObjectEndpoint(RequestsEndpoint):
     method = Methods.POST
     url = "https://api.restful-api.dev/objects/"
     default_headers = {"content-type": "application/json"}
-    parser_class = NamedTupleParser
     models = {
-        "request": CreateObjectRequest,
-        "response": CreateObjectResponse,
+        "request": NamedTupleParser(CreateObjectRequest),
+        "response": NamedTupleParser(CreateObjectResponse),
     }
 
     def __init__(self, data: CreateObjectRequest):

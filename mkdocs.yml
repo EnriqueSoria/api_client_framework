@@ -21,6 +21,7 @@ theme:
       # - navigation.tabs.sticky
       - navigation.footer
       - content.code.annotate
+      - content.code.copy
 
 markdown_extensions:
   - sane_lists
@@ -28,7 +29,11 @@ markdown_extensions:
   - fenced_code
   - admonition
   - pymdownx.details
-  - pymdownx.highlight
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      auto_title: false
   - pymdownx.superfences
   - pymdownx.tasklist
   - pymdownx.tabbed

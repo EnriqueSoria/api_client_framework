@@ -9,12 +9,22 @@ class UsersEndpoint(RequestsEndpoint):
     method = Methods.GET
     url = "https://random-data-api.com/api/v2/users"
     params = {"response_type": "json"}
-    parser = NamedTupleParser(User)
+    models = {"response": NamedTupleParser(User)}
 
 
-class BeersEndpoint(RequestsEndpoint):
+class BeerListEndpoint(RequestsEndpoint):
+    method = Methods.GET
+    url = "https://random-data-api.com/api/v2/beers"
+    params = {"response_type": "json"}
+    models = {"response": NamedTupleParser(model=Beer, many=True)}
+
+    def __init__(self, size):
+        self.params["size"] = size
+
+
+class BeerDetailEndpoint(RequestsEndpoint):
     method = Methods.GET
     url = "https://random-data-api.com/api/v2/beers"
     params = {"response_type": "json"}
     parser_class = NamedTupleParser
-    models = {"response": Beer}
+    models = {"response": NamedTupleParser(Beer)}
