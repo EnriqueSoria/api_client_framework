@@ -8,8 +8,7 @@ from api_client_framework.protocols import Parser
 
 
 class NoOpParser(Parser):
-    def __init__(self, model, **kwargs):
-        ...  # Dummy implementation to match with protocol
+    def __init__(self, model, **kwargs): ...  # Dummy implementation to match with protocol
 
     def to_dict(self, instance: dict) -> dict:
         return instance

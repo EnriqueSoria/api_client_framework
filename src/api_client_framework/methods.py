@@ -4,4 +4,3 @@ class Methods:
     PUT = "PUT"
     PATCH = "PATCH"
     DELETE = "DELETE"
-
