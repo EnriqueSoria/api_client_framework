@@ -4,7 +4,6 @@ from dataclasses import field
 from json import JSONDecodeError
 from typing import Any
 from typing import Callable
-from typing import Type
 
 import requests
 
@@ -27,17 +26,14 @@ class RequestsEndpoint(EndpointProtocol):
     data: Any = None
     default_headers: dict | None = None
 
-    parser_class: Type[Parser] = NoOpParser
-    models: dict[str, Type[Any]] = field(default_factory=dict)
+    models: dict[str, Parser] = field(default_factory=dict)
     exception_handler: Callable[[Exception], Any] = ExceptionReRaiser()
 
     def get_parser(self, model_name: str) -> Parser:
         try:
-            model = self.models[model_name]
+            return self.models[model_name]
         except KeyError:
             return NoOpParser(...)
-
-        return self.parser_class(model)
 
     def get_url(self) -> str:
         return self.url
